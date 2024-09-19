@@ -1,25 +1,33 @@
 <div class="header">
     <div class="header-title">Campagnes</div>
     <div class="user">
+
+        <div class="pop-up" [ngClass]="{'hidden' : !showOwner}">
+            <button><img src="https://cdn-icons-png.flaticon.com/256/4042/4042250.png" alt="" ></button>
+            <button><img src="https://cdn-icons-png.flaticon.com/256/7401/7401914.png" alt="" ></button>
+            <button><img src="https://cdn-icons-png.flaticon.com/256/4042/4042250.png" alt="" ></button>
+            <button><img src="https://cdn-icons-png.flaticon.com/256/7401/7401914.png" alt="" ></button>
+            <button><img src="https://cdn-icons-png.flaticon.com/256/4042/4042250.png" alt="" ></button>
+        </div>
+        
         <div class="notif">
             <button type="button" class="btn position-relative" (click)="showNotifications()">
                 <i class="fa-solid fa-bell"></i>
             <span class="position-absolute top-10 start-60 translate-middle p-1 bg-danger border border-light rounded-circle">
               <span class="visually-hidden">New alerts</span>
             </span>
-          </button></div>
+          </button>
+        </div>
+        
         <div class="name">Olivier</div>
         <div class="avatar" (click)="openOwner()">
+
+            
+
             <img src="https://olivier-falahi.netlify.app/assets/images/Olivier-Falahi.PNG" alt="" class="avatar-img">
             <button class="show-owner" ><i class="fa-solid" [ngClass]="{ 'fa-chevron-down' : !showOwner, 'fa-chevron-up' : showOwner}"></i></button>
             
-            <div class="pop-up" [ngClass]="{'hidden' : !showOwner}">
-                <button><img src="https://cdn-icons-png.flaticon.com/256/4042/4042250.png" alt="" ></button>
-                <button><img src="https://cdn-icons-png.flaticon.com/256/7401/7401914.png" alt="" ></button>
-                <button><img src="https://cdn-icons-png.flaticon.com/256/4042/4042250.png" alt="" ></button>
-                <button><img src="https://cdn-icons-png.flaticon.com/256/7401/7401914.png" alt="" ></button>
-                <button><img src="https://cdn-icons-png.flaticon.com/256/4042/4042250.png" alt="" ></button>
-            </div>
+            
         </div>
     </div>
 </div>
