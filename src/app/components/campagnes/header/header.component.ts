@@ -23,7 +23,7 @@ openOwner() {
 }
 
 showNotifications(): void{
-  alert('3 nouvelles tofications');
+  alert('3 nouvelles notifications');
 }
 
 }
