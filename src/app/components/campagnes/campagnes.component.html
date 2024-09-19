@@ -29,15 +29,6 @@
 
     <div *ngIf="tab" class="content">
 
-        <div class="footer">
-            <div class="result-per-page"></div>
-            <div class="pagination">
-            <button [ngClass]="{ 'hidden' : currentPage === 1}" class="arrow" (click)="previousPage()"><i class="fa-solid fa-chevron-left"></i></button>
-            <button type="button" class="btn btn-outline-secondary" disabled>{{ currentPage }}/{{ totalPages }}</button>
-            <button [ngClass]="{ 'hidden' : currentPage === totalPages}" class="arrow" (click)="nextPage()"><i class="fa-solid fa-chevron-right"></i></button>
-            </div>
-        </div>
-
         <div class="header-content">
             <div class="nom">Nom</div>
             <div class="shares">Partages</div>
