@@ -1,0 +1,25 @@
+
+
+
+<div class="features">
+    <div class="feature-details">
+        <div class="feature-name">{{ feature.name }}</div>
+        
+        <div class="badges">
+            <div *ngFor="let badge of feature.badges" class="feature badges"><span class="badge rounded-pill bg-danger">{{ badge }}</span></div>
+        </div>
+    </div>
+    <div class="creator"><img *ngIf="feature.creatorImg" [src]="feature.creatorImg" alt="" class="avatar-img"></div>
+    <div class="share-details">
+        <div class="nb-share"> {{ feature.shares }} </div>
+        <div class="idle-share">({{ feature.idleShares }} en attente)</div>
+    </div>
+    <div class="nb-clicks">{{ feature.clicks }}</div>
+    <div class="nb-contacts"> {{ feature.contacts }} </div>
+    <div class="edit">
+
+        <button type="button" class="btn btn-info" (click)="shareFeature()"><i class="fa-solid fa-share-nodes edit-buttons"></i></button>
+        <button type="button" class="btn btn-info" (click)="editFeature()"><i class="fa-solid fa-pencil edit-buttons"></i></button>
+        <button type="button" class="btn btn-info" (click)="featureParams()"><i class="fa-solid fa-gear edit-buttons"></i></button>
+    </div>
+</div>

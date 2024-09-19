@@ -1,0 +1,74 @@
+<div class="campagnes">
+    <app-header />
+
+    <div class="filter-view">
+        <div class="selector">
+            <button (click)="switchTab()" [ngClass]="{ 'tab-left' : tab, 'tab-right' : !tab}">Campagnes</button>
+            <div class="separator"></div>
+            <button (click)="switchTab()">Mots-clés</button>
+            <button type="button" class="btn btn-danger new-campaign" (click)="newCampaign()">Nouvelle campagne</button>
+        </div>
+        <div class="filter">
+            <select class="form-select" aria-label="Default select example" (input)="changeSortOrder($event)">
+                <option selected>Date de création desc.</option>
+                <option value="1">Date de création asc.</option>
+              </select>
+
+            <div class="input-group mb-0">
+                <input type="text" class="form-control" placeholder="Recherche..." aria-label="search" aria-describedby="basic-addon1" (input)="searchFeature($event)">
+                <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-magnifying-glass"></i></span>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="!tab" class="key-words-view">
+
+        <i class="fa-solid fa-spell-check"></i> KEYWORDS
+    
+    </div>
+
+    <div *ngIf="tab" class="content">
+
+        <div class="footer">
+            <div class="result-per-page"></div>
+            <div class="pagination">
+            <button [ngClass]="{ 'hidden' : currentPage === 1}" class="arrow" (click)="previousPage()"><i class="fa-solid fa-chevron-left"></i></button>
+            <button type="button" class="btn btn-outline-secondary" disabled>{{ currentPage }}/{{ totalPages }}</button>
+            <button [ngClass]="{ 'hidden' : currentPage === totalPages}" class="arrow" (click)="nextPage()"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </div>
+
+        <div class="header-content">
+            <div class="nom">Nom</div>
+            <div class="shares">Partages</div>
+            <div class="clicks">Clics</div>
+            <div class="contacts">Contacts</div>
+            <div class="header-blank"></div>
+        </div>
+
+        <app-feature-skeleton *ngIf="!features" />
+        <app-feature-skeleton *ngIf="!features" />
+        <app-feature-skeleton *ngIf="!features" />
+        <app-feature-skeleton *ngIf="!features" />
+        <app-feature-skeleton *ngIf="!features" />
+        <app-feature *ngFor="let feature of features.slice((currentPage * featuresPerPage) - featuresPerPage, currentPage * featuresPerPage)" [feature]="feature"/>
+        <div *ngIf="features.length === 0" class="empty-results">Pas de résultats</div>
+
+        <div class="footer">
+            <div class="result-per-page">
+                <select class="form-select" aria-label="Default select example" (input)="updateListview($event)">
+                    <option value="0" selected>5 Résultats par page</option>
+                    <option value="1" >10 Résultats par page</option>
+                    <option value="2" >Tous les résultats</option>
+                </select>
+            </div>
+        
+            <div class="pagination">
+                <button [ngClass]="{ 'hidden' : currentPage === 1}" class="arrow" (click)="previousPage()"><i class="fa-solid fa-chevron-left"></i></button>
+                <button type="button" class="btn btn-outline-secondary" disabled>{{ currentPage }}/{{ totalPages }}</button>
+                <button [ngClass]="{ 'hidden' : currentPage === totalPages}" class="arrow" (click)="nextPage()"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </div>
+        
+    </div>
+</div>

@@ -1,0 +1,89 @@
+
+:host {
+    display: block;
+    width: 100%;
+    background-color: white;
+  }
+
+.features{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 30% 10% 15% 15% 15% 15%;
+    background-color: white;
+    border-top: 1px solid #BABAC1;
+    margin: 10px 0;
+    padding: 10px 0;
+
+    .features-details{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: start;
+        background-color: white;
+    }
+
+    .feature-name{
+        background-color: white;
+    }
+
+    .badges{
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        background-color: white;
+    }
+
+    .creator{
+        display: flex;
+        align-items: center;
+        background-color: white;
+
+        .avatar-img{
+            width: 50px;
+            height: 50px;
+            border-radius: 50px;
+            margin-left: 10px;
+        }
+    }
+
+    .share-details{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: white;
+    }
+    .idle-share{
+        font-size: 0.8rem;
+        color: grey;
+        background-color: white;
+    }
+
+    .nb-clicks, .nb-contacts{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+    }
+
+    .nb-share{
+        background-color: white;
+    }
+
+    .edit{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+        button{
+            margin: 0 5px;
+            background-color: #2A7A93;
+            border: none;
+        }
+    }
+    .edit-buttons{
+        background-color: transparent;
+        color: white;
+        font-size: 1rem;
+    }
+
+}

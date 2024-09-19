@@ -1,0 +1,97 @@
+
+
+:host {
+    display: block;
+    width: 100%;
+  }
+
+.header{
+    max-width: 1300px;
+    width: 100%;
+    margin: 50px 50px 30px 10px;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-title{
+    font-size: 2rem;
+    font-weight: 900;
+}
+
+
+.user{
+    display: flex;
+    align-items: center;
+}
+
+.name{
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.avatar{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.avatar-img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    margin-left: 10px;
+
+}
+
+.show-owner{
+    border: none;
+}
+
+.pop-up{
+    opacity: 1;
+    position: absolute;
+    right: 70px;
+    top: 100px;
+    align-items: center;
+    display: flex;
+    border-radius: 10px;
+    background-color: white;
+    padding: 10px 20px;
+    box-shadow: 0 0 10px rgba(128, 128, 128, .4);
+    z-index: 1;
+    transition: all 0.3s linear;
+    button{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 35px;
+        height: 35px;
+        
+        background-color: white;
+        border-radius: 40px;
+        margin: 0 -5px;
+        z-index: 2;
+        &:hover{
+            z-index: 3;
+        }
+        img{
+            width: 40px;
+            height: 40px;
+            border-radius: 40px;
+            border: solid 3px white;
+        }
+    }
+   
+}
+
+.hidden{
+    transition: none;
+    position: absolute;
+    height: 0;
+    opacity: 0;
+    right: 70px;
+    top: 90px;
+
+}
