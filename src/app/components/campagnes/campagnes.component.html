@@ -37,11 +37,6 @@
             <div class="header-blank"></div>
         </div>
 
-        <app-feature-skeleton *ngIf="!features" />
-        <app-feature-skeleton *ngIf="!features" />
-        <app-feature-skeleton *ngIf="!features" />
-        <app-feature-skeleton *ngIf="!features" />
-        <app-feature-skeleton *ngIf="!features" />
         <app-feature *ngFor="let feature of features.slice((currentPage * featuresPerPage) - featuresPerPage, currentPage * featuresPerPage)" [feature]="feature"/>
         <div *ngIf="features.length === 0" class="empty-results">Pas de résultats</div>
 
