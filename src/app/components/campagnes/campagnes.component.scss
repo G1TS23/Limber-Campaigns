@@ -148,6 +148,7 @@
     margin: 10px 0;
     padding: 10px 0;
 
+    
     .pagination{
         display: flex;
         align-items: center;
@@ -167,6 +168,10 @@
             cursor: default;
         }
     }
+}
+
+.form-select{
+    color: grey;
 }
 
 
