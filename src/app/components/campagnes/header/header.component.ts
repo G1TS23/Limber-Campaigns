@@ -16,14 +16,12 @@ export class HeaderComponent implements OnInit {
     this.showOwner = false;
   }
 
-openOwner() {
-  this.showOwner = !this.showOwner;
-  console.log("🚀 ~ HeaderComponent ~ openOwner ~ this.showOwner:", this.showOwner)
-  
-}
+  openOwner(): void {
+    this.showOwner = !this.showOwner;  
+  }
 
-showNotifications(): void{
-  alert('3 nouvelles notifications');
-}
+  showNotifications(): void{
+    alert('3 nouvelles notifications');
+  }
 
 }

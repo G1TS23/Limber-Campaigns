@@ -18,6 +18,7 @@ import { Feature } from '../../models/feature';
   templateUrl: './campagnes.component.html',
   styleUrl: './campagnes.component.scss'
 })
+
 export class CampagnesComponent implements OnInit {
 
   constructor(private featuresService: FeaturesService){}
@@ -35,27 +36,21 @@ export class CampagnesComponent implements OnInit {
   ngOnInit(): void {
 
     this.data = this.featuresService.getFeatures();
-
-    console.log(typeof this.data);
-
     this.featuresPerPage = 5;
     this.sortDesc = true;
     this.searchValue = "";
     this.tab = true;
-
     this.features = this.returnSearchFeatures();
    
     this.features.forEach((element) => {
       element.createdDate = element.createdDate.split('/').join('');
     });
 
-    this.sort();
+    this.sortByDate();
 
     this.features.forEach((element) => {
       element.badges.sort();
     });
-
-    console.log(this.features);
   }
 
   nextPage(): void {
@@ -63,72 +58,65 @@ export class CampagnesComponent implements OnInit {
     this.currentPage ++;
     }
     }
-    previousPage() {
-      if(this.currentPage > 1){
-        this.currentPage --;
-        }
+  previousPage(): void {
+    if(this.currentPage > 1){
+      this.currentPage --;
+      }
+  }
+
+  updateListview(event: Event): void {
+
+    const value: string = (event.target as HTMLInputElement).value;
+
+    switch(value){
+      case "0" :
+        this.featuresPerPage = 5;
+        break;
+      case "1" :
+        this.featuresPerPage = 10;
+        break;
+      case "2" :
+        this.featuresPerPage = this.nbFeatures;
+        break;
     }
 
-    updateListview(event: Event): void {
+    this.totalPages = Math.ceil(this.nbFeatures / this.featuresPerPage);
+    this.currentPage = 1;
+  }
 
-      const value: string = (event.target as HTMLInputElement).value;
+  changeSortOrder(event: Event): void {
+    const value: string = (event.target as HTMLInputElement).value;
+    value === "1" ? this.sortDesc = false : this.sortDesc = true;
+    this.sortByDate();
+  }
 
-      switch(value){
-        case "0" :
-          this.featuresPerPage = 5;
-          break;
-        case "1" :
-          this.featuresPerPage = 10;
-          break;
-        case "2" :
-          this.featuresPerPage = this.nbFeatures;
-          break;
-      }
+  sortByDate(): void{
+    this.features.sort((a: any, b: any) => {
+      if(!this.sortDesc){
+        return parseInt(a.createdDate) - parseInt(b.createdDate);
+      } else return parseInt(b.createdDate) - parseInt(a.createdDate);
+      });
+  }
 
-      this.totalPages = Math.ceil(this.nbFeatures / this.featuresPerPage);
-      this.currentPage = 1;
+  searchFeature(event: Event): void {
+    this.searchValue = (event.target as HTMLInputElement).value;
+    this.features = this.returnSearchFeatures();
+  }
 
-      console.log(value);
-  
-      }
+  returnSearchFeatures(): Feature[]{
+    const searchedFeatures: Feature[] = this.data.campaigns.filter((feature: { name: string; }) => 
+        feature.name.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").includes(this.searchValue.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "")));
+    this.nbFeatures = searchedFeatures.length;
+    this.totalPages = Math.ceil(this.nbFeatures / this.featuresPerPage);
+    this.currentPage = 1;
+    return searchedFeatures;
+  }
 
-      changeSortOrder(event: Event): void {
-        const value: string = (event.target as HTMLInputElement).value;
-        value === "1" ? this.sortDesc = false : this.sortDesc = true;
-        this.sort();
-      }
+  newCampaign(): void {
+    alert("Ajouter une nouvelle campagne");
+  }
 
-      sort(): void{
-        this.features.sort((a: any, b: any) => {
-          if(!this.sortDesc){
-            return parseInt(a.createdDate) - parseInt(b.createdDate);
-          } else return parseInt(b.createdDate) - parseInt(a.createdDate);
-          });
-      }
-
-      searchFeature(event: Event): void {
-        this.searchValue = (event.target as HTMLInputElement).value;
-        this.features = this.returnSearchFeatures();
-      }
-
-      returnSearchFeatures(): Feature[]{
-        const searchedFeatures: Feature[] = this.data.campaigns.filter((feature: { name: string; }) => 
-            feature.name.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").includes(this.searchValue.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "")));
-        this.nbFeatures = searchedFeatures.length;
-        this.totalPages = Math.ceil(this.nbFeatures / this.featuresPerPage);
-        this.currentPage = 1;
-        return searchedFeatures;
-      }
-
-      newCampaign(): void {
-        alert("Ajouter une nouvelle campagne");
-      }
-
-        switchTab(): void {
-          this.tab = !this.tab;
-        }
-
-
-
-
+  switchTab(): void {
+    this.tab = !this.tab;
+  }
 }
