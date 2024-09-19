@@ -16,15 +16,15 @@ export class FeatureComponent {
   @Input() feature!: Feature;
 
   shareFeature() {
-    alert("Share");
+    alert(`Share : ${this.feature.name}`);
     }
 
   editFeature() {
-    alert("Edit");
+    alert(`Edit : ${this.feature.name}`);
     }
   
   featureParams() {
-    alert("Paramètres");
+    alert(`Paramètres : ${this.feature.name}`);
     }
 
 }
